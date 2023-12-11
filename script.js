@@ -65,16 +65,11 @@ function sessionStart() {
     showMap();
 }
 
-function checkTurn() {
-    if (!turn) {
-        askColors()
-        askTurn()
+function nextTurn() {
+    if (turn == player1) {
+        turn = player2
     } else {
-        if (turn == player1) {
-            turn = player2
-        } else {
-            turn = player1
-        }
+        turn = player1
     }
 }
 
@@ -82,6 +77,7 @@ function checkCol(x) {
     for (i=map.length-1;i>=0;i--) {
         if (map[i][x] == w) {
             map[i][x] = turn;
+            nextTurn();
             break;
         }
     }
@@ -92,5 +88,12 @@ function play(test) {
     let y = test.getAttribute('row');
     checkCol(x);
     showMap();
-    checkTurn();
+}
+
+function askColors() {
+
+}
+
+function askTurn() {
+
 }
