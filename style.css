@@ -1,0 +1,23 @@
+.box {
+    float: left;
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    clear: both;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.yellow {
+    background-color: yellow;
+}
