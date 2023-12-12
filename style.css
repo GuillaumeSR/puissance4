@@ -1,9 +1,15 @@
+table {
+    background-color: blue;
+}
+
 .box {
     float: left;
     height: 50px;
     width: 50px;
     border: 1px solid black;
     clear: both;
+    border-radius: 50%;
+    background-color: white;
 }
 
 .red {
