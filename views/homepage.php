@@ -1,0 +1,1 @@
+<p>Welcome to my game of connect 4 ! I hope you'll have a great time playing ! Have fun !</p>

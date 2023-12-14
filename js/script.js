@@ -86,6 +86,8 @@ function showMap() {
 function sessionStart() {
     // askColors();
     // askTurn();
+    win = false;
+    draw = false;
     boardSize();
     initializeMap();
     showMap();
@@ -105,6 +107,9 @@ function boardSize() {
 function resetBoard() {
     document.getElementById('rows').value = 6;
     document.getElementById('columns').value = 7;
+    win = false;
+    draw = false;
+    boardSize();
     initializeMap();
     showMap();
 }
@@ -169,13 +174,18 @@ function checkForDraw() {
             return;
         }
     }
-    draw = true
+    draw = true;
 }
 
 function checkDraw() {
-    if (draw == true) {
-        alert("Well played all but no winner this time !")
+    if (win == true) {
+        return;
+    } else {
+        if (draw == true) {
+            alert("Well played all but no winner this time !")
+        }
     }
+    
 }
 
 function checkRowWin() {
