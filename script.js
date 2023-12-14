@@ -19,13 +19,16 @@ let l;
 
 let map = [];
 
-let rows = 5;
-let columns = 5;
+let rows = 6;
+document.getElementById('rows').value = rows;
+let columns = 7;
+document.getElementById('columns').value = columns;
 
 let win = false;
 let draw = false;
 
 function initializeMap() {
+    map = [];
     for(i=0;i<rows;i++) {
         map[i] = [];
         for(j=0;j<columns;j++) {
@@ -81,14 +84,27 @@ function showMap() {
 }
 
 function sessionStart() {
-    // askSize();
     // askColors();
     // askTurn();
+    boardSize();
     initializeMap();
     showMap();
 }
 
-function reset() {
+function boardSize() {
+    rowsTest = document.getElementById('rows').value;
+    columnsTest = document.getElementById('columns').value;
+    if (rowsTest !== '') {
+        rows = document.getElementById('rows').value;
+    }
+    if (columnsTest !== '') {
+        columns = document.getElementById('columns').value;
+    }
+}
+
+function resetBoard() {
+    document.getElementById('rows').value = 6;
+    document.getElementById('columns').value = 7;
     initializeMap();
     showMap();
 }
@@ -124,11 +140,6 @@ function play(test) {
     checkCol(x);
 }
 
-function askSize() {
-    rows = prompt("Number of rows you want ?")
-    columns = prompt("Number of columns you want ?")
-}
-
 function askColors() {
     player1 = prompt("What color do you want between red, yellow, green and blue ?")
     player2 = prompt("What color do you want between red, yellow, green and blue ?")
@@ -153,7 +164,6 @@ function checkWin() {
 }
 
 function checkForDraw() {
-    // Check if any cell in the top row is empty
     for (let c = 0; c < map[0].length; c++) {
         if (map[0][c] === w) {
             return;
@@ -205,7 +215,7 @@ function checkDiagWin() {
     }
 }
 
-
+sessionStart()
 
 // function checkRowWin() {
 //     for (j=0;j<map[0].length;j++) {
