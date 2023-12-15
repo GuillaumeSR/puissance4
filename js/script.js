@@ -27,6 +27,10 @@ document.getElementById('columns').value = columns;
 let win = false;
 let draw = false;
 
+let timer;
+let minutes = 0;
+let seconds = 0;
+
 function initializeMap() {
     map = [];
     for(i=0;i<rows;i++) {
@@ -88,9 +92,15 @@ function sessionStart() {
     // askTurn();
     win = false;
     draw = false;
+}
+
+function startGame() {
+    win = false;
+    draw = false;
     boardSize();
     initializeMap();
     showMap();
+    startChronometer();
 }
 
 function boardSize() {
@@ -112,6 +122,7 @@ function resetBoard() {
     boardSize();
     initializeMap();
     showMap();
+    resetChronometer();
 }
 
 function nextTurn() {
@@ -161,8 +172,10 @@ function askTurn() {
 function checkWin() {
     if (win == true) {
         if (turn == player1) {
+            stopChronometer();
             alert("Well played ! Player 1 as won !")
         } else {
+            stopChronometer();
             alert("Well played ! Player 2 as won !")
         }
     }
@@ -182,6 +195,7 @@ function checkDraw() {
         return;
     } else {
         if (draw == true) {
+            stopChronometer();
             alert("Well played all but no winner this time !")
         }
     }
@@ -223,6 +237,35 @@ function checkDiagWin() {
             }
         }
     }
+}
+
+function startChronometer() {
+    console.log('jyfu');
+    timer = setInterval(function() {
+        seconds++;
+        if (seconds === 60) {
+            minutes++;
+            seconds = 0;
+        }
+        displayTime();
+    }, 1000);
+}
+
+function stopChronometer() {
+    clearInterval(timer);
+}
+
+function resetChronometer() {
+    clearInterval(timer);
+    minutes = 0;
+    seconds = 0;
+    displayTime();
+}
+
+function displayTime() {
+    const timerDisplay = document.getElementById('timer');
+    let time = minutes + ":" + seconds;
+    timerDisplay.textContent = time;
 }
 
 sessionStart()
